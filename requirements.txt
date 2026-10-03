@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn
+streamlit
+pydantic
+python-dotenv
+pyyaml
+joblib
+ipykernel
+groq
+pyspellchecker

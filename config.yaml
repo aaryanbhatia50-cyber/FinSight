@@ -1,0 +1,7 @@
+llm:
+  provider: groq
+  model: openai/gpt-oss-20b
+  temperature: 0.2
+
+pipeline:
+  confidence_threshold: 0.5
