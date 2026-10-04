@@ -1,6 +1,9 @@
 # FinSight
 
 ## Hybrid AI Customer Support Intelligence System
+## 🚀 Live Demo
+
+[**Try SupportIQ Live**](https://supportiq-banking.streamlit.app/)
 
 FinSight is a hybrid customer-support intelligence system designed for banking-related customer queries.
 
