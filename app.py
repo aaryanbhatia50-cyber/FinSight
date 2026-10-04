@@ -5,7 +5,7 @@ from src.utils.spelling import find_spelling_errors
 
 
 st.set_page_config(
-    page_title="SupportIQ",
+    page_title="FinSight",
     page_icon="💬",
     layout="centered"
 )
@@ -44,7 +44,7 @@ st.markdown(
 
 
 st.markdown(
-    '<div class="main-title">💬 SupportIQ</div>',
+    '<div class="main-title">💬 FinSight</div>',
     unsafe_allow_html=True
 )
 
@@ -106,7 +106,7 @@ if analyze_button:
                 if result["route"] == "OUT_OF_SCOPE":
 
                     st.info(
-                        "This query is outside the scope of SupportIQ. "
+                        "This query is outside the scope of FinSight. "
                         "Please enter a banking-related customer support issue."
                     )
 
