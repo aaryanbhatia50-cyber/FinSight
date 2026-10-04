@@ -1,8 +1,8 @@
-# SupportIQ
+# FinSight
 
 ## Hybrid AI Customer Support Intelligence System
 
-SupportIQ is a hybrid customer-support intelligence system designed for banking-related customer queries.
+FinSight is a hybrid customer-support intelligence system designed for banking-related customer queries.
 
 The system combines a traditional Machine Learning classifier with a Large Language Model (LLM). Straightforward queries are handled using a Linear SVM model, while ambiguous queries are routed to an LLM for deeper semantic analysis.
 
@@ -18,7 +18,7 @@ A traditional intent classifier can efficiently handle straightforward queries b
 
 On the other hand, using an LLM for every query can introduce additional latency and unnecessary API usage.
 
-SupportIQ addresses this problem using a hybrid architecture:
+FinSight addresses this problem using a hybrid architecture:
 
 **Customer Query → Domain Check → ML Classification → Confidence Check → ML Response / LLM Fallback**
 
@@ -84,7 +84,7 @@ SupportIQ addresses this problem using a hybrid architecture:
 
 ## Dataset
 
-SupportIQ uses the BANKING77 dataset.
+FinSight uses the BANKING77 dataset.
 
 The dataset contains:
 
@@ -167,7 +167,7 @@ Linear SVM works well for high-dimensional sparse text features such as TF-IDF.
 
 The model produces decision scores for all 77 intents.
 
-Instead of treating the SVM output as a probability, SupportIQ uses the difference between the highest and second-highest decision scores as a confidence margin.
+Instead of treating the SVM output as a probability, FinSight uses the difference between the highest and second-highest decision scores as a confidence margin.
 
 ```text
 Margin = Highest Decision Score - Second Highest Decision Score
@@ -181,7 +181,7 @@ A smaller margin indicates that the model is less certain between competing inte
 
 ## Hybrid ML + LLM Routing
 
-SupportIQ does not send every query to the LLM.
+FinSight does not send every query to the LLM.
 
 The system first evaluates the query using the Linear SVM model.
 
@@ -234,7 +234,7 @@ The experiment demonstrates the trade-off between allowing the ML model to handl
 
 ## LLM Integration
 
-SupportIQ uses the Groq API with:
+FinSight uses the Groq API with:
 
 ```text
 Model: openai/gpt-oss-20b
@@ -344,7 +344,7 @@ The LLM was not more accurate than the SVM on the ambiguous fallback cases. Its 
 
 ## Domain Guard
 
-Before classification, SupportIQ checks whether the query appears to be related to the banking domain.
+Before classification, FinSight checks whether the query appears to be related to the banking domain.
 
 The domain guard uses a lightweight keyword-based approach containing terms related to:
 
@@ -372,7 +372,7 @@ This prevents unrelated questions from being incorrectly classified into one of 
 
 ## Spelling Detection
 
-SupportIQ also performs basic spelling-error detection before analysis.
+FinSight also performs basic spelling-error detection before analysis.
 
 Common banking-specific terms are excluded from generic spell checking.
 
@@ -438,7 +438,7 @@ Customer Response
 ## Project Structure
 
 ```text
-SupportIQ/
+FinSight/
 │
 ├── app.py
 ├── config.yaml
@@ -491,8 +491,8 @@ SupportIQ/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/SupportIQ.git
-cd SupportIQ
+git clone https://github.com/aaryanbhatia50-cyber/FinSight.git
+cd FinSight
 ```
 
 ### 2. Create a Virtual Environment
@@ -651,7 +651,7 @@ Potential improvements include:
 
 ## Project Outcome
 
-SupportIQ demonstrates how traditional Machine Learning and Generative AI can be combined into a single customer-support workflow.
+FinSight demonstrates how traditional Machine Learning and Generative AI can be combined into a single customer-support workflow.
 
 The Linear SVM provides fast intent classification for straightforward queries, while the LLM provides deeper analysis for lower-confidence cases.
 
