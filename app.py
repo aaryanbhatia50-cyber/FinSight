@@ -33,9 +33,10 @@ st.markdown(
     }
 
     [data-testid="stTextInput"] input {
-        min-height: 52px;
-        padding: 12px 14px;
+        height: 52px;
+        padding: 0 14px;
         font-size: 16px;
+        line-height: 52px;
     }
     </style>
     """,

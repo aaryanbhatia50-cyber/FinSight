@@ -52,7 +52,10 @@ def analyze_customer_query(customer_query):
             "llm_analysis": None
         }
 
-    llm_result = analyze_with_llm(customer_query)
+    llm_result = analyze_with_llm(
+    customer_query,
+    list(svm_model.classes_)
+)
 
     return {
         "route": "LLM",

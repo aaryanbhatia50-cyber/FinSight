@@ -1,17 +1,17 @@
 import json
 from pathlib import Path
+import os
 
-import joblib
 import yaml
 from dotenv import load_dotenv
 from groq import Groq
 
 from src.schemas.support_schema import SupportAnalysis
 
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 
-load_dotenv(BASE_DIR / ".env")
 
 with open(BASE_DIR / "config.yaml", "r", encoding="utf-8") as file:
     config = yaml.safe_load(file)
@@ -19,13 +19,12 @@ with open(BASE_DIR / "config.yaml", "r", encoding="utf-8") as file:
 model_name = config["llm"]["model"]
 temperature = float(config["llm"]["temperature"])
 
-svm_model = joblib.load(
-    BASE_DIR / "models" / "svm_model.pkl"
-)
+api_key = os.getenv("GROQ_API_KEY")
 
-allowed_intents = list(svm_model.classes_)
+if not api_key:
+    raise ValueError("GROQ_API_KEY is not configured.")
 
-client = Groq()
+client = Groq(api_key=api_key)
 
 with open(
     BASE_DIR / "prompts" / "support_analysis.txt",
@@ -35,7 +34,7 @@ with open(
     prompt_template = file.read()
 
 
-def analyze_with_llm(customer_query):
+def analyze_with_llm(customer_query, allowed_intents):
 
     intent_list = "\n".join(
         f"- {intent}" for intent in allowed_intents
@@ -46,7 +45,7 @@ def analyze_with_llm(customer_query):
     )
 
     system_prompt = f"""
-You are SupportIQ, an intelligent banking customer-support analysis system.
+You are FinSight, an intelligent banking customer-support analysis system.
 
 You MUST return ONLY valid JSON.
 Do not use Markdown.
